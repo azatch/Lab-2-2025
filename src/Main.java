@@ -15,8 +15,22 @@ public class Main {
             System.out.println("Точка " + i + ": (" + p.getX() + "; " + p.getY() + ")");
         }
 
-        System.out.println("Значения функции (в том числе вне области)");
-        for (double x = -1.0; x <= 5.0; x += 1.0) {
+        System.out.println("Значения функции в узлах:");
+        for (int i = 0; i < f.getPointsCount(); i++) {
+            double x = f.getPointX(i);
+            double y = f.getFunctionValue(x);
+            System.out.println("x = " + x + ", f(x) = " + y);
+        }
+
+        System.out.println("Значения функции между узлами (проверка интерполяции):");
+        double[] testX = {0.5, 1.5, 2.5, 3.5};
+        for (double x : testX) {
+            double y = f.getFunctionValue(x);
+            System.out.println("x = " + x + ", f(x) = " + y);
+        }
+
+        System.out.println("Значения функции вне области:");
+        for (double x : new double[]{-1.0, 5.0}) {
             double y = f.getFunctionValue(x);
             System.out.println("x = " + x + ", f(x) = " + y);
         }

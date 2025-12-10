@@ -47,8 +47,10 @@ public class TabulatedFunction {
             return Double.NaN;
         }
 
+        double eps = 1e-9;
+
         for (int i = 0; i < pointsCount; i++) {
-            if (points[i].getX() == x) {
+            if (Math.abs(points[i].getX() - x) < eps) {
                 return points[i].getY();
             }
         }
@@ -63,8 +65,7 @@ public class TabulatedFunction {
         double x2 = points[i + 1].getX();
         double y2 = points[i + 1].getY();
 
-        double y = y1 + (x - x1) * (y2 - y1) / (x2 - x1);
-        return y;
+        return y1 + (x - x1) * (y2 - y1) / (x2 - x1);
     }
 
     public int getPointsCount() {
